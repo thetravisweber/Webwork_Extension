@@ -26,6 +26,9 @@ document.addEventListener('keydown', function(event) {
     event.preventDefault();
     submitButton.click();
   }
+  // TODO: Allow typing of N and B within textboxes
+  //  (can use tellIfLikelyTyping function below)
+  //  I am not adding this now, because I don't need to type N and B
   if (event.key == "N") {
     nextProblemButton.click();
   }
