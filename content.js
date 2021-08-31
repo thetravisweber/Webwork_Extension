@@ -26,13 +26,11 @@ document.addEventListener('keydown', function(event) {
     event.preventDefault();
     submitButton.click();
   }
-  if (event.shiftKey) {
-    if (event.key == "N") {
-      nextProblemButton.click();
-    }
-    if (event.key == "B") {
-      lastProblemButton.click();
-    }
+  if (event.key == "N") {
+    nextProblemButton.click();
+  }
+  if (event.key == "B") {
+    lastProblemButton.click();
   }
 });
 
@@ -43,4 +41,9 @@ function searchInnerText(elements, searchText) {
   return elements.find((el) => {
     return el.innerHTML == searchText;
   });
+}
+
+function tellIfLikelyTyping(event) {
+  return event.target instanceof HTMLTextAreaElement ||
+    event.target instanceof HTMLInputElement;
 }
