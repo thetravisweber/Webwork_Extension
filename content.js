@@ -6,10 +6,6 @@ let submitButton = document.getElementById("submitAnswers_id");
 let aTags = [...document.getElementsByTagName("a")];
 let nextProblemButton = searchInnerText(aTags, "Next Problem");
 let lastProblemButton = searchInnerText(aTags, "Previous Problem");
-// literally probably won't ever need this
-if (!!submitButton) {
-  submitButton = searchInnerText(aTags, "Submit Answers");
-}
 
 /* 
   Remove Default Form Submission Behavior
@@ -29,10 +25,10 @@ document.addEventListener('keydown', function(event) {
   // TODO: Allow typing of N and B within textboxes
   //  (can use tellIfLikelyTyping function below)
   //  I am not adding this now, because I don't need to type N and B
-  if (event.key == "N") {
+  if (event.key == "N" && event.shiftKey) {
     nextProblemButton.click();
   }
-  if (event.key == "B") {
+  if (event.key == "B" && event.shiftKey) {
     lastProblemButton.click();
   }
 });
