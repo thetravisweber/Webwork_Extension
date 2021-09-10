@@ -10,10 +10,14 @@ let inputFields = [...document.getElementsByTagName("input")];
 let aTags = [...document.getElementsByTagName("a")];
 
 let problemForm = document.getElementById("problemMainForm");
+let problemBody = document.getElementById("problem_body");
+
 let submitButton = document.getElementById("submitAnswers_id");
 let previewButton = document.getElementById("previewAnswers_id");
 let nextProblemButton = searchInnerText(aTags, "Next Problem");
 let lastProblemButton = searchInnerText(aTags, "Previous Problem");
+
+let previewTable = document.getElementsByClassName("attemptResults")[0];
 
 /* 
   Remove Default Form Submission Behavior
@@ -34,8 +38,9 @@ inputFields.map(el => {
 });
 
 function typingAnswer(el) {
+  console.log("rocking it");
   enterSendsToNextPage = false;
-  console.log(el.value);
+  updatePreviews();
 }
 
 /*
@@ -76,15 +81,67 @@ function isLikelyTyping(event) {
     event.target instanceof HTMLInputElement;
 }
 
-function hasRoleAlert(element) {
-  console.log(element);
-  return element.role === "alert";
-}
-
 function gotEverythingCorrect() {
   let attemptResultsSummaryDivs = document.getElementsByClassName("attemptResultsSummary");
-  if (!attemptResultsSummaryDivs) return false;
+  if (attemptResultsSummaryDivs.length == 0) return false;
   return attemptResultsSummaryDivs[0].children[0].className === "ResultsWithoutError";
+}
+
+async function updatePreviews() {
+  let newPreviewTable = await fetchPreviewText();
+  console.log(newPreviewTable);
+  console.log(dropOuterTags(newPreviewTable));
+  return;
+  if (!previewTable) {
+    console.log("undefines");
+    problemBody.innerHTML = newPreviewTable + problemBody.innerHTML;
+    previewTable = document.getElementsByClassName("attemptResults")[0];
+  } else {
+    console.log("exists");
+    previewTable.innerHTML = dropOuterTags(newPreviewTable);
+  }
+}
+
+function dropOuterTags(str) {
+  return substring(str, ">", "</table>", false);
+}
+
+async function fetchPreviewText() {
+  let rawResponse = await post("", postableFormData());
+  let previewTable = parseForPreviewTable(rawResponse);
+  return previewTable;
+}
+
+function parseForPreviewTable(str) {
+  return substring(str, `<table class="attemptResults`, `</table>`);
+}
+
+function substring(str, start, end, inclusive = true) {
+  let afterStart = str.split(start)[1];
+  let betweenNonInclusive = afterStart.split(end)[0];
+  if (!inclusive) return betweenNonInclusive;
+  return start + betweenNonInclusive + end;
+}
+
+function postableFormData() {
+  let formData = new FormData(problemForm);
+  formData.append(previewButton.name, previewButton.value);
+  return formData;
+}
+
+function post(url, data) {
+  return new Promise((res, rej) => {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4)
+          if (xhr.status == 200)
+              res(xhr.responseText)
+          else
+              rej({ code: xhr.status, text: xhr.responseText })
+    }
+    xhr.open("POST", url);
+    return xhr.send(data);
+  });
 }
 
 // just a test function that I leave in because I use it a lot
