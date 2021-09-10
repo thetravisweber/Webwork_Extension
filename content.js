@@ -89,21 +89,27 @@ function gotEverythingCorrect() {
 
 async function updatePreviews() {
   let newPreviewTable = await fetchPreviewText();
-  console.log(newPreviewTable);
-  console.log(dropOuterTags(newPreviewTable));
-  return;
   if (!previewTable) {
-    console.log("undefines");
-    problemBody.innerHTML = newPreviewTable + problemBody.innerHTML;
-    previewTable = document.getElementsByClassName("attemptResults")[0];
-  } else {
-    console.log("exists");
-    previewTable.innerHTML = dropOuterTags(newPreviewTable);
+    addPreviewTable();
   }
+  previewTable.innerHTML = dropOuterTags(newPreviewTable);
+}
+
+function addPreviewTable() {
+  problemBody.innerHTML = templePreviewTable() + problemBody.innerHTML;
+  previewTable = document.getElementsByClassName("attemptResults")[0];
+}
+
+function templePreviewTable() {
+  return `<table class="attemptResults table table-condensed table-bordered"><tbody></tbody></table>`
 }
 
 function dropOuterTags(str) {
-  return substring(str, ">", "</table>", false);
+  let x = str.split(">");
+  x.shift();
+  let a = x.join(">").split("<");
+  a.pop();
+  return a.join("<");
 }
 
 async function fetchPreviewText() {
