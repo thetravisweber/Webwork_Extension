@@ -17,8 +17,6 @@ let previewButton = document.getElementById("previewAnswers_id");
 let nextProblemButton = searchInnerText(aTags, "Next Problem");
 let lastProblemButton = searchInnerText(aTags, "Previous Problem");
 
-let previewTable = document.getElementsByClassName("attemptResults")[0];
-
 /* 
   Remove Default Form Submission Behavior
 */
@@ -88,20 +86,20 @@ function gotEverythingCorrect() {
 }
 
 async function updatePreviews() {
-  let newPreviewTable = await fetchPreviewText();
-  if (!previewTable) {
-    addPreviewTable();
-  }
-  previewTable.innerHTML = dropOuterTags(newPreviewTable);
+  let newOutputSummary = await fetchOutputSummary();
+  let oldOutputSummary = document.getElementById("output_summary");
+  document.replaceChild(newOutputSummary, oldOutputSummary);
 }
 
 function addPreviewTable() {
-  problemBody.innerHTML = templePreviewTable() + problemBody.innerHTML;
-  previewTable = document.getElementsByClassName("attemptResults")[0];
+  let table = document.createElement("table")
+  table.className = templatePreviewTableClass();
+
+  previewTable = getPreviewTable(document);
 }
 
-function templePreviewTable() {
-  return `<table class="attemptResults table table-condensed table-bordered"><tbody></tbody></table>`
+function templatePreviewTableClass() {
+  return "attemptResults table table-condensed table-bordered";
 }
 
 function dropOuterTags(str) {
@@ -112,14 +110,22 @@ function dropOuterTags(str) {
   return a.join("<");
 }
 
-async function fetchPreviewText() {
+async function fetchOutputSummary() {
   let rawResponse = await post("", postableFormData());
-  let previewTable = parseForPreviewTable(rawResponse);
+  let previewTable = generateOutputSummaryDom(rawResponse);
   return previewTable;
 }
 
-function parseForPreviewTable(str) {
-  return substring(str, `<table class="attemptResults`, `</table>`);
+function generateOutputSummaryDom(str) {
+  let parser = new DOMParser();
+  var doc = parser.parseFromString(str, "text/html");
+  outputSummary = doc.getElementById("output_summary");
+  getPreviewTable(doc).className = templatePreviewTableClass();
+  return outputSummary;
+}
+
+function getPreviewTable(doc) {
+  return doc.getElementsByClassName("attemptResults")[0]
 }
 
 function substring(str, start, end, inclusive = true) {
