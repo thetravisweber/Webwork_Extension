@@ -7,7 +7,7 @@
             "matches": [
                 "https://webwork.math.nau.edu/*"
             ],
-            "js": ["content.js", "shortcuts.js", "livepreview.js"]
+            "js": ["content.js", "shortcuts.js", "livepreview.js", "randomproblems.js"]
         }
     ],
     "browser_action": {
