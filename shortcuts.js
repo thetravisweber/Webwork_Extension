@@ -16,23 +16,6 @@ problemForm.removeAttribute("action");
 problemForm.removeAttribute("onsubmit");
 
 /*
-  Typing Behavior
-*/
-let inputFields = [...document.getElementsByTagName("input")];
-
-inputFields.map(el => {
-  if (el.type === "hidden") return;
-  el.addEventListener("input", function() {
-    typingAnswer(el);
-  });
-});
-
-function typingAnswer(el) {
-  enterSendsToNextPage = false;
-  updatePreviews();
-}
-
-/*
   Keybinds
 */
 document.addEventListener('keydown', function(event) {
