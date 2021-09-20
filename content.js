@@ -6,40 +6,7 @@ let enterSendsToNextPage = gotEverythingCorrect();
 /*
   Needed Dom Elements
 */
-let inputFields = [...document.getElementsByTagName("input")];
-let aTags = [...document.getElementsByTagName("a")];
 
-let problemForm = document.getElementById("problemMainForm");
-let problemBody = document.getElementById("problem_body");
-
-let submitButton = document.getElementById("submitAnswers_id");
-let previewButton = document.getElementById("previewAnswers_id");
-let nextProblemButton = searchInnerText(aTags, "Next Problem");
-let lastProblemButton = searchInnerText(aTags, "Previous Problem");
-
-/* 
-  Remove Default Form Submission Behavior
-*/
-let defaultAction = problemForm.getAttribute("action");
-problemForm.removeAttribute("action");
-problemForm.removeAttribute("onsubmit");
-
-/*
-  Add in Wanted Event Handlers
-*/
-
-inputFields.map(el => {
-  if (el.type === "hidden") return;
-  el.addEventListener("input", function() {
-    typingAnswer(el);
-  });
-});
-
-function typingAnswer(el) {
-  console.log("rocking it");
-  enterSendsToNextPage = false;
-  updatePreviews();
-}
 
 /*
   Keybinds
