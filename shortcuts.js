@@ -7,6 +7,8 @@ let enterSendsToNextPage = gotEverythingCorrect();
   Needed Dom Elements
 */
 let aTags = [...document.getElementsByTagName("a")];
+let submitButton = document.getElementById("submitAnswers_id");
+if (!submitButton) submitButton = document.getElementById("checkAnswers_id");
 
 /* 
   Remove Default Form Submission Behavior
@@ -24,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     if (enterSendsToNextPage) {
       searchInnerText(aTags, "Next Problem").click();
     } else {
-      document.getElementById("submitAnswers_id").click();
+      submitButton.click();
     }
   }
 
