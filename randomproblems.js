@@ -6,7 +6,6 @@ chrome.runtime.onMessage.addListener(async function (request) {
 });
 
 async function pullProblemsFromRandomSet(problemSets) {
-  console.log(problemSets);
   if (problemSets.length === 0) {
     alert('fail');
     return;
@@ -25,7 +24,6 @@ async function getProblemListFromSet(problemSet) {
 }
 
 function navigateToRandomProblem(potentialProblems) {
-  console.log(potentialProblems);
   let problem = pickRandomProblem(potentialProblems);
   navigateTo(problem);
 }
@@ -43,7 +41,6 @@ function pickRandomProblem(problems) {
 }
 
 async function pullProblemSets() {
-  console.log(problemSetsPath());
   let page = await get(problemSetsPath());
   let parser = new DOMParser();
   let doc = parser.parseFromString(page, "text/html");
@@ -53,16 +50,13 @@ async function pullProblemSets() {
 function problemSetsPath() {
   let paths = window.location.pathname.split("/");
   let goodPaths = paths.filter(path => {
-    console.log(path, isNaN(path), path.length);
     return !path.includes("set") && (isNaN(path) || path.length == 0);
-  })
-  console.log(paths, goodPaths);
+  });
   problem_sets_path = goodPaths.join("/");
   return window.location.origin + problem_sets_path + window.location.search;
 }
 
 function get(url, method = 'GET') {
-  console.log(url);
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
