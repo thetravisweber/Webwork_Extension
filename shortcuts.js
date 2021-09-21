@@ -30,14 +30,13 @@ document.addEventListener('keydown', function(event) {
     }
   }
 
-  // TODO: Allow typing of N and B within textboxes
-  //  (can use tellIfLikelyTyping function below)
-  //  I am not adding this now, because I don't need to type N and B
-  if (event.key == "N" && event.shiftKey) {
-    searchInnerText(aTags, "Next Problem").click();
-  }
-  if (event.key == "B" && event.shiftKey) {
-    searchInnerText(aTags, "Previous Problem").click();
+  if (!isLikelyTyping(event)) {
+    if (event.key == "N") {
+      searchInnerText(aTags, "Next Problem").click();
+    }
+    if (event.key == "B") {
+      searchInnerText(aTags, "Previous Problem").click();
+    }
   }
 });
 
