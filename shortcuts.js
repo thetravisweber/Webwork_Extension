@@ -30,13 +30,11 @@ document.addEventListener('keydown', function(event) {
     }
   }
 
-  if (!isLikelyTyping(event)) {
-    if (event.key == "N") {
-      searchInnerText(aTags, "Next Problem").click();
-    }
-    if (event.key == "B") {
-      searchInnerText(aTags, "Previous Problem").click();
-    }
+  if (isLikelyTyping(event)) return;
+  if (event.key == "N") {
+    searchInnerText(aTags, "Next Problem").click();
+  } else if (event.key == "B") {
+    searchInnerText(aTags, "Previous Problem").click();
   }
 });
 

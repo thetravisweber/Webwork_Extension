@@ -10,4 +10,3 @@ function typingAnswer(el) {
   // updatePreviews();
   doNothing(el.value);
 }
-
