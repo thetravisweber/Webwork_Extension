@@ -5,9 +5,15 @@
     "content_scripts": [
         {
             "matches": [
+                "https://webwork.math.nau.edu/*/set*"
+            ],
+            "js": ["content.js", "shortcuts.js", "livepreview.js", "boringtaxstuff.js"]
+        },
+        {
+            "matches": [
                 "https://webwork.math.nau.edu/*"
             ],
-            "js": ["content.js"]
+            "js": ["studyproblem.js"]
         }
     ],
     "browser_action": {
