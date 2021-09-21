@@ -39,6 +39,39 @@ document.addEventListener('keydown', function(event) {
 });
 
 /*
+  Add in Random Problem Button
+*/
+addRandomProblemButton();
+
+function addRandomProblemButton() {
+  let problemNav = document.getElementById("problem-nav");
+  problemNav.insertBefore(makeRandomProblemButton(), problemNav.children[problemNav.children.length-1]);
+}
+
+function makeRandomProblemButton() {
+  problemListButton = searchInnerText(aTags, "Problem List");
+  newButton = problemListButton.cloneNode();
+  newButton.removeAttribute("href");
+  newButton.addEventListener('click', navToRandomProblem);
+  newButton.innerHTML = "Random Problem";
+  newButton.style = "margin-right:4px";
+  console.log(newButton);
+  return newButton;
+}
+
+function navToRandomProblem() {
+  let problemList = document.getElementsByClassName("problem-list")[0];
+  let clickableProblemLinks = [...problemList.children].filter(el => {
+    return el.tagName == "LI";
+  }).map(el => {
+    return el.children[0];
+  });
+  let randomLink = clickableProblemLinks[Math.floor(Math.random()*clickableProblemLinks.length)];
+  randomLink.click();
+}
+
+
+/*
   Helper Functions
 */
 function searchInnerText(elements, searchText) {
