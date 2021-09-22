@@ -1,6 +1,12 @@
 {
     "name": "Webwork Upgrade",
     "version": "1.0.0",
+    "icons": { 
+        "16": "icon16.png",
+        "48": "icon48.png",
+       "128": "icon128.png"
+    },
+    "description": "For speeding up Workflow in WebWork.",
     "manifest_version": 2,
     "content_scripts": [
         {
