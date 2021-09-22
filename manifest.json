@@ -13,7 +13,7 @@
             "matches": [
                 "https://webwork.math.nau.edu/*/set*"
             ],
-            "js": ["content.js", "shortcuts.js", "livepreview.js", "zzzboringtaxstuff.js"]
+            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
         },
         {
             "matches": [
