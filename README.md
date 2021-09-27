@@ -14,7 +14,7 @@ Here are the shortcuts:
 The other benefit is two buttons to help you study:
 
 1. A button labeled "Random Problem Button" that appears between the "Problem List" button and "Next Problem" button, while working on a set. This button will take you to a random problem within the set.
-2. A button labeled "Study Problem" that appears in the drop-down of the plugin up in bookmarks bar.
+2. A button labeled "Study Problem" that appears in the drop-down of the plugin up in bookmarks bar. This button will take you to a random problem in a random set. It is designed to help study for multi-section exams.
 
 ## Set-up
 
