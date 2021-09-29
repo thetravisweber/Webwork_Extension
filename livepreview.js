@@ -5,8 +5,8 @@
     with preview answers showing
 
   I am then shoveling this html into a new Document object, then using the vanilla
-    javascript DOM interfact to pull the DOM Table object from this new document object,
-    and then adding this object as a child of the document being rendered to the user.
+    javascript Web APIS to pull the HTMLTableElement object from this new document object,
+    and then adding this as a child of the document being rendered to the user.
   
   This is not working because the document object being rendered to the user is rejecting
     this new child, because it did not give birth to it. I am sure this is an easy enough
@@ -30,6 +30,9 @@
     full page request. If anyone knows who maintains webwork, and can get in contact with them,
     please ask for a barebone RESTAPI that can pass back solely the parsed equation string.
 
+  For these 2 reasons, I recommend making a switch within the extension popup (popup.html),
+    that allows the user to turn off live preview if it is giving them issues. This is the part
+    that is really making me procrastinate this project, but it is very do-able.
 
     ----------
 
