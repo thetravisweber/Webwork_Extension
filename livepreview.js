@@ -1,3 +1,44 @@
+/*
+
+  The method I am currently using for the live preview is to take the HTML
+    from a request to the server for a full new page of the same problem, but
+    with preview answers showing
+
+  I am then shoveling this html into a new Document object, then using the vanilla
+    javascript DOM interfact to pull the DOM Table object from this new document object,
+    and then adding this object as a child of the document being rendered to the user.
+  
+  This is not working because the document object being rendered to the user is rejecting
+    this new child, because it did not give birth to it. I am sure this is an easy enough
+    fix, and so if you can take a crack at it I would greatly appreciate it
+
+    ----------
+
+  If you revert back to commit fbaff69d84b05b5e5426725f2ff8eae924a31a23,
+    you can see how I was trying to implement the live preview by updating
+    the inner HTML of the page. The problem with this method is that updating
+    innerHTML attributes will make the whole page rerender, which breaks the
+    keybinds implemented in other files.
+
+    ----------
+
+  If you get this to work either way, then the next problem is in resizing the preview table.
+    It will be very annoying if the live preview table is resizing consistently and the
+    rest of the problem is shifting around the page.
+
+  Another issue is that the live preview will likely be slow/delayed because we are making a
+    full page request. If anyone knows who maintains webwork, and can get in contact with them,
+    please ask for a barebone RESTAPI that can pass back solely the parsed equation string.
+
+
+    ----------
+
+  I still intend to get a live preview working at some point this semester, so if you can not
+    figure it out, please let me know what you learned so I don't have to repeat your steps.
+
+*/
+
+
 async function updatePreviews() {
   let newOutputSummary = await fetchOutputSummary();
   let oldOutputSummary = document.getElementById("output_summary");
