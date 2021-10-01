@@ -11,13 +11,13 @@
     "content_scripts": [
         {
             "matches": [
-                "https://webwork.math.nau.edu/*/set*"
+                "https://webwork.math.*/set*"
             ],
             "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
         },
         {
             "matches": [
-                "https://webwork.math.nau.edu/*"
+                "https://webwork.math./*"
             ],
             "js": ["studyproblem.js"]
         }
