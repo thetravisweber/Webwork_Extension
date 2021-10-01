@@ -11,13 +11,13 @@
     "content_scripts": [
         {
             "matches": [
-                "https://webwork.math.*/set*"
+                "https://webwork.math.asu.edu/*/set*"
             ],
             "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
         },
         {
             "matches": [
-                "https://webwork.math./*"
+                "https://webwork.math.asu.edu/*"
             ],
             "js": ["studyproblem.js"]
         }
