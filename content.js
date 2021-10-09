@@ -18,7 +18,8 @@ function typingAnswer(el) {
   enterSendsToNextPage = false;
   // uncomment if you want to try to work on the live preview
   // updatePreviews();
-  doNothing(extractAnswer(el));
+  let typedAnswer = extractAnswer(el);
+  doNothing(typedAnswer);
 }
 
 // more convenient ui for elements with select tag while correct/incorrect answer previews are available

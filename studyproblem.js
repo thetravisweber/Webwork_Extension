@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener(async function (request) {
 
 async function pullProblemsFromRandomSet(problemSets) {
   if (problemSets.length === 0) {
-    if (!otherAttemptAtPullingRandomProblem()) {
+    if (!randomProblemForWebworkAsu()) {
       alert('my code is foolproof no way you see this');
     }
     return;
@@ -18,7 +18,7 @@ async function pullProblemsFromRandomSet(problemSets) {
   return getProblemListFromSet(randomSet);
 }
 
-async function otherAttemptAtPullingRandomProblem() {
+async function randomProblemForWebworkAsu() {
   let problemInfoBox = document.getElementById('fisheye');
   let problemList = [...problemInfoBox.getElementsByClassName('problem-list')][0];
   let problems = [...problemList.getElementsByTagName('li')];

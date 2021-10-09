@@ -160,3 +160,15 @@ function getSetLinkText(link, setName) {
     let setLink = link + '/' +  setName.replaceAll(' ', '_');
     return setLink;
 }
+
+function iconImage() {
+
+    let img = document.createElement('img');
+    img.setAttribute('src', 'data:image/png;base64,' + getIconData());
+    
+    return img;
+}
+
+function getIconData() {
+    return 'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAALpJREFUWIXtlzEOwjAMRZ9RxMBUNiQuwYzEXqYKzsK5iphg5yzMcIOwxFITBSgStBnsKYkd+fkngy2z1QGA6WLtGcCazVIATtcbAJMhkr4zp5U/LnsAvI+FmG+P0f4HcXogUIACBmAABmAABmAABmAABmAArm/g/bwLq/z4oP60O/5koysgVd1GJb3q51PTSr+N7+aGAhRwBBLC41Z1C4CIZC+oP933je/kAwpQQDKE/5qSo8r174yuwBOeCja8Y+V+8QAAAABJRU5ErkJggg==';
+}

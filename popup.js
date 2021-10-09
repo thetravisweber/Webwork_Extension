@@ -69,7 +69,19 @@ window.addEventListener('DOMContentLoaded', function () {
       let closest = Infinity;
       let closestIndex = -1;
       for (let j = 0; j < sets.length; j++) {
-        let setDueText = sets[j].due + ' 23:59:59 MST';
+        let timezoneOffset = new Date().getTimezoneOffset();
+        let timezoneSign = Math.sign(timezoneOffset) < 0 ? '+' : '-';
+        timezoneOffset = Math.abs(timezoneOffset);
+        let offsetHours = Math.floor(timezoneOffset / 60);
+        let offsetMinutes = timezoneOffset % 60;
+        if (offsetHours < 10) {
+          offsetHours = '0' + offsetHours;
+        }
+        if (offsetMinutes < 10) {
+          offsetMinutes = '0' + offsetMinutes;
+        }
+        let timezone = 'GMT' + timezoneSign + offsetHours + ':' + offsetMinutes;
+        let setDueText = sets[j].due + ' 23:59:59 ' + timezone;
         let setDue = new Date(setDueText);
         let timeTil = setDue.getTime() - Date.now();
 
