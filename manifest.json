@@ -1,0 +1,30 @@
+{
+    "name": "Webwork Upgrade",
+    "version": "1.0.0",
+    "icons": { 
+        "16": "icon16.png",
+        "48": "icon48.png",
+       "128": "icon128.png"
+    },
+    "description": "Webwork for humans",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": ["https://*/*"],
+            "include_globs":  ["https://webwork.*/*", "https://webwork2.*/*"],
+            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js", "classtrack.js"]
+        },
+        {
+            "matches": ["https://*/*"],
+            "include_globs":  ["https://webwork.*/*", "https://webwork2.*/*"],
+            "js": ["studyproblem.js", "popup.js"]
+        }
+    ],
+    "permissions": [
+        "storage"
+    ],
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "Webwork for humans"
+    }
+}
