@@ -5,6 +5,55 @@
   });
 });
 
+readWebworkUrl();
+
+function readWebworkUrl() {
+  chrome.storage.sync.get(['webwork_data'], (data) => {
+    let url = getBaseUrl(window.location.href);
+    console.log("DATA");
+    console.log(data);
+    if (!Object.keys(data).length) {
+      data = getDefaultData();
+    }
+    if (!data.webwork_data.webwork_home_link_set && !data.webwork_data.webwork_home_link.includes(url)) {
+      data.webwork_data.webwork_home_link.push(url);
+    }
+    chrome.storage.sync.set(data);
+  });
+}
+
+
+function getDefaultData() {
+  return {
+      webwork_data : {
+        classes : [],
+        webwork_home_link : [],
+        webwork_home_link_set : false
+      }
+  };
+}
+
+function getBaseUrl(url) {
+  let ignoreStarts = ['https://', 'http://', 'www.'];
+  for (let i = 0; i < ignoreStarts.length; i++) {
+    let ignoreStart = ignoreStarts[i];
+    if (url.includes(ignoreStart)) {
+      url = url.substr(url.indexOf(ignoreStart) + ignoreStart.length);
+    }
+  }
+
+  let ignoreEnds = ['/', '?', '#', '&'];
+  for (let i = 0; i < ignoreEnds.length; i++) {
+    let ignoreEnd = ignoreEnds[i];
+    if (url.includes(ignoreEnd)) {
+      url = url.substr(0, url.indexOf(ignoreEnd));
+    }
+  }
+  url = url.toLowerCase();
+  
+  return url;
+}
+
 function extractAnswer(el) {
   let root = el.getElementsByClassName('mq-root-block')[0];
   let chars = [...root.children];

@@ -7,11 +7,32 @@
         <nobr></image>WeBWorK for Humans</nobr>
     </header>
     <div style='display:inline-block; width:150px;' id='btn-box'>
-        <button class='webwork-btn block-btn' id="webwork_link">WeBWorK</button>
-        <button class='webwork-btn block-btn' id="study_problem_button">Study Problem</button>
+        <button class='webwork-btn block-btn' id="webwork-btn">WeBWorK</button>
+        <button class='webwork-btn block-btn' id="study-problem-button">Study Problem</button>
         <button class='webwork-btn block-btn' id="info-btn">Info</button>
     </div>
     <div style="display:inline-block; width:200px;" id="set-box"></div>
-    <iframe hidden style='width:100%;' id='readme-frame' src="README.md"></iframe>
+    <div id='info-box' style='display:none;'>
+        <ul id='info-list'>
+            Info
+            <li>
+                <ul>
+                    <lh>Functions</lh>
+                    <li>Study Random Problem Button</li>
+                    <li>Skip Shortcut <kbd>Shift</kbd>+<kbd>N</kbd></li>
+                    <li>Back Shortcut <kbd>Shift</kbd>+<kbd>B</kbd></li>
+                    <li>Submit Shortcut <kbd>Enter</kbd></li>
+                    <li>Links & Reminders for Upcoming Sets
+                        <ul>
+                            <li>
+                                Hit the "Add To Classlist" Button at the top of your class's Webwork page
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul style='width:100%;' id='data-list'></ul>
+    </div>
 
 </body>

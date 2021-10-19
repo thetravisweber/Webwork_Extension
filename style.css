@@ -24,6 +24,16 @@
     width: 130px;
 }
 
+.auto-btn {
+    width: auto;
+}
+
+.sm-btn {
+    padding: 2px;
+    margin: 0;
+    width: auto;
+}
+
 .set-text {
     display: block;
     font-size: 12px;
@@ -44,4 +54,51 @@
 
 .due-today {
     font-weight: 800;
+}
+
+linkpopup {
+    color: var(--webwork-blue-dark);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.link-btn {
+    width: 170px;
+}
+
+inputbox * {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+input[type=textbox] {
+    width: 145px;
+}
+
+
+ul, ol {
+    color: var(--webwork-blue-dark);
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+ul li, ol li {
+    color: var(--webwork-blue-dark);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ul lh, ol lh {
+    position: relative;
+    left: -40px;
+}
+
+#info-list {
+    width: auto;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
 }
