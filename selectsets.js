@@ -5,9 +5,7 @@ let studySetsKey = getCourse()+"_studysets"
 if (!!table) {
   chrome.storage.sync.get({firstLandKey : true}, function(is_first_land) {
     chrome.storage.sync.get([studySetsKey], function(studySets) {
-      console.log(studySets);
-      console.log('yooo');
-      insertSelectStudySetsCheckBoxes(table, studySets, is_first_land);
+      insertSelectStudySetsCheckBoxes(table, studySets[studySetsKey], is_first_land);
     });
   });
 }
@@ -26,7 +24,7 @@ function insertSelectStudySetsCheckBoxes(table, studySets, is_first_land) {
     if (index == 0) {
       child = selectSetsTableHeader();
     } else {
-      child = createStudySetCheckBox(row, index, (!!studySets.index));
+      child = createStudySetCheckBox(row, index, (!!studySets[index]));
     }
     // insert new cell at end of row, and put the child element inside
     let x = row.insertCell(-1);
@@ -47,7 +45,7 @@ function createStudySetCheckBox(row, index, isChecked) {
   checkbox.setAttribute("set-link", fullLink.split("?")[0]);
   checkbox.setAttribute("index", index);
   if (isChecked) {
-    checkbox.setAttribute("checked");
+    checkbox.setAttribute("checked", null);
   }
   checkbox.addEventListener("click", boxClicked);
   return checkbox;
@@ -62,11 +60,7 @@ function boxClicked(e) {
     } else {
       delete studySetsData[studySetsKey][index];
     }
-    chrome.storage.sync.set(studySetsData, function() {
-      chrome.storage.sync.get({[studySetsKey]: {}}, function(results) {
-        console.log("gonna get next pull", results);
-      });
-    });
+    chrome.storage.sync.set(studySetsData);
   });
 }
 
