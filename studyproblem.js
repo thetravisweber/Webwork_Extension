@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener(async function (request) {
-  // there is probably a cleaner way to do this, but I am not being paid for this
+  // there is probably a cleaner way to do this, but whatev
   if (request==="open_random_problem") {
     pullProblemSets().then(pullProblemsFromRandomSet).then(navigateToRandomProblem);
   }
