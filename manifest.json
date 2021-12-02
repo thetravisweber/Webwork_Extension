@@ -14,7 +14,14 @@
                 "https://webwork.math.nau.edu/*/set*",
                 "https://webwork.math.asu.edu/*/set*"
             ],
-            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js", "studyproblem.js"]
+            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
+        },
+        {
+            "matches": [
+                "https://webwork.math.nau.edu/*",
+                "https://webwork.math.asu.edu/*"
+            ],
+            "js": ["studyproblem.js", "selectsets.js"]
         }
     ],
     "browser_action": {
