@@ -36,7 +36,7 @@
 
     ----------
 
-  I still intend to get a live preview working at some point this semester, so if you can not
+  I still intend to get a live preview working at some point, so if you can not
     figure it out, please let me know what you learned so I don't have to repeat your steps.
 
 */
