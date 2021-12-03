@@ -1,7 +1,11 @@
 chrome.runtime.onMessage.addListener(async function (request) {
   // there is probably a cleaner way to do this, but whatev
   if (request==="open_random_problem") {
-    pullProblemSets().then(pullProblemsFromRandomSet).then(navigateToRandomProblem);
+    chrome.storage.sync.get([studySetsKey], function(studySets) {
+      // let setLinks = Object.values(studySets[studySetsKey]);
+      // pullProblemsFromRandomSet(setLinks);
+      pullProblemsFromRandomSet(studySets[studySetsKey]).then(navigateToRandomProblem);
+    }); 
   }
 });
 
@@ -15,12 +19,23 @@ async function pullProblemsFromRandomSet(problemSets) {
 }
 
 async function getProblemListFromSet(problemSet) {
-  let page = await get(problemSet.href);
-  let parser = new DOMParser();
-  let doc = parser.parseFromString(page, "text/html");
-  return [...doc.getElementsByTagName("a")].filter(el => {
-    return el.innerText.includes("Problem");
-  });
+  console.log(problemSet);
+  try {
+    let page = await get(problemSet);
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(page, "text/html");
+    let aTags = doc.getElementsByTagName("a");
+    if (aTags.length == 0) {
+      throw 'no problems';
+    }
+    return [...aTags].filter(el => {
+      return el.innerText.includes("Problem");
+    });
+  } catch {
+    alert("failed 😔");
+    return;
+  }
+  
 }
 
 function navigateToRandomProblem(potentialProblems) {

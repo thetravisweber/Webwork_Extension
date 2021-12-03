@@ -79,6 +79,7 @@ function getCourse() {
 function allStudySetsOn(table) {
   studySets = {};
   rowsOf(table).forEach((row, index) => {
+    if (index==0) return;
     studySets[index] = rowLink(row);
   });
   chrome.storage.sync.set({[studySetsKey]: studySets});
