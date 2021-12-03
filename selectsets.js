@@ -2,10 +2,11 @@ let table = document.getElementsByClassName("problem_set_table")[0];
 let firstLandKey = getCourse()+"_firstland";
 let studySetsKey = getCourse()+"_studysets";
 
+// chrome.storage.sync.clear();
+
 if (!!table) {
   chrome.storage.sync.get({[firstLandKey] : true}, function(results) {
     is_first_land = results[firstLandKey];
-    console.log(is_first_land);
     if (is_first_land) {
       allStudySetsOn(table);
       chrome.storage.sync.set({[firstLandKey]: false});
@@ -42,7 +43,7 @@ function selectSetsTableHeader() {
 
 function rowLink(row) {
   let fullLink = row.children[1].children[0].href;
-  return fullLink.split("?")[0];
+  return fullLink.split("?")[0].split(".edu")[1];
 }
 
 function createStudySetCheckBox(row, index, isChecked) {
@@ -67,7 +68,6 @@ function boxClicked(e) {
       delete studySetsData[studySetsKey][index];
     }
     chrome.storage.sync.set(studySetsData);
-    console.log(studySetsData[studySetsKey]);
   });
 }
 
