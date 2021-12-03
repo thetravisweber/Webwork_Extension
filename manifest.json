@@ -11,6 +11,9 @@
     ],
     "description": "For speeding up Workflow in WebWork.",
     "manifest_version": 2,
+    "background": { 
+        "scripts": ["background.js"]
+    },
     "content_scripts": [
         {
             "matches": [
@@ -27,8 +30,5 @@
             "js": ["studyproblem.js", "selectsets.js"]
         }
     ],
-    "browser_action": {
-        "default_popup": "popup.html",
-        "default_title": "settings"
-    }
+    "browser_action": {}
 }
