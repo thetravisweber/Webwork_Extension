@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(async function (request) {
 
 async function pullProblemsFromRandomSet(problemSets) {
   if (problemSets.length === 0) {
-    alert('fail');
+    alert('You have no Study Sets selected to choose from');
     return;
   }
   let randomSet = pickRandomSet(problemSets);
@@ -55,22 +55,6 @@ function pickRandomSet(problemSets) {
 
 function pickRandomProblem(problems) {
   return problems[Math.floor(problems.length*Math.random())];
-}
-
-async function pullProblemSets() {
-  let page = await get(problemSetsPath());
-  let parser = new DOMParser();
-  let doc = parser.parseFromString(page, "text/html");
-  return [...doc.getElementsByClassName("set-id-tooltip")];
-}
-
-function problemSetsPath() {
-  let paths = window.location.pathname.split("/");
-  let goodPaths = paths.filter(path => {
-    return !path.includes("set") && (isNaN(path) || path.length == 0);
-  });
-  problem_sets_path = goodPaths.join("/");
-  return window.location.origin + problem_sets_path + window.location.search;
 }
 
 function get(url, method = 'GET') {
