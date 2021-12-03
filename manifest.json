@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://webwork.math.nau.edu/*/set*",
+                "https://webwork.math.nau.edu/*/*/*/*",
                 "https://webwork.math.asu.edu/*/set*"
             ],
             "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
