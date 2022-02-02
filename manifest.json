@@ -6,19 +6,29 @@
         "48": "icon48.png",
        "128": "icon128.png"
     },
+    "permissions": [
+        "storage"
+    ],
     "description": "For speeding up Workflow in WebWork.",
     "manifest_version": 2,
+    "background": { 
+        "scripts": ["background.js"]
+    },
     "content_scripts": [
         {
             "matches": [
-                "https://webwork.math.nau.edu/*/set*",
+                "https://webwork.math.nau.edu/*/*/*/*",
                 "https://webwork.math.asu.edu/*/set*"
             ],
-            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js", "studyproblem.js"]
+            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js"]
+        },
+        {
+            "matches": [
+                "https://webwork.math.nau.edu/*",
+                "https://webwork.math.asu.edu/*"
+            ],
+            "js": ["studyproblem.js", "selectsets.js"]
         }
     ],
-    "browser_action": {
-        "default_popup": "popup.html",
-        "default_title": "settings"
-    }
+    "browser_action": {}
 }

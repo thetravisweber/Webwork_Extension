@@ -55,7 +55,6 @@ function makeRandomProblemButton() {
   newButton.addEventListener('click', navToRandomProblem);
   newButton.innerHTML = "Random Problem";
   newButton.style = "margin-right:4px";
-  console.log(newButton);
   return newButton;
 }
 
