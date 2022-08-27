@@ -1,0 +1,2 @@
+highlight graphs/diagrams when matching (https://webwork2.asu.edu/webwork2/Reynolds_MAT_272_C_Fall_2021/Sec_15.3/8)
+Easier tab/focusing

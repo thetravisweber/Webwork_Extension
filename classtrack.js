@@ -84,7 +84,8 @@ function saveClass(coolClass) {
 }
 
 function setWebworkData(data) {
-    console.log('SETTING DATA' + data);
+    console.log('SETTING DATA');
+    console.log(data);
     chrome.storage.sync.set(data);
 }
 
@@ -94,16 +95,23 @@ function printWebworkClasses() {
     });
 }
 
-function getSetDue(setDateText) {
-    if (setDateText.includes('/')) {
-        const DATE_FORMAT = 'xx/xx/xxxx';
-        const DATE_INDEX_OFFSET = DATE_FORMAT.indexOf('/');
-        var dateIndex = setDateText.indexOf('/') - DATE_INDEX_OFFSET;
-        if (dateIndex >= 0) {
-            return setDateText.substring(dateIndex, dateIndex + DATE_FORMAT.length);
-        }
+function getSetDue(setStatusText) {
+    if (setStatusText.includes('Closed')) {
+        return null;
     }
-    return null;
+    if (!setStatusText.includes('/')) {
+        return null;
+    }
+
+    const DATE_FORMAT = 'xx/xx/xxxx';
+    const DATE_INDEX_OFFSET = DATE_FORMAT.indexOf('/');
+    var dateIndex = setStatusText.indexOf('/') - DATE_INDEX_OFFSET;
+
+    if (dateIndex < 0) {
+        return null;
+    }
+
+    return setStatusText.substring(dateIndex, dateIndex + DATE_FORMAT.length);
 }
 
 function getSets(setRows, link) {
@@ -113,8 +121,8 @@ function getSets(setRows, link) {
         const SET_ELEMENT_TAG_NAME = 'td';
         var setElements = [...setRows[i].getElementsByTagName(SET_ELEMENT_TAG_NAME)];
         var setName = [...setElements[0].getElementsByTagName('a')][0].innerText;
-        var setDueText = setElements[1].innerText;
-        var setDue = getSetDue(setDueText);
+        var setStatusText = setElements[1].innerText;
+        var setDue = getSetDue(setStatusText);
         var setLink = getSetLinkText(link, setName);
         if (setDue) {
             set.name = setName;

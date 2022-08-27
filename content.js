@@ -9,9 +9,7 @@ readWebworkUrl();
 
 function readWebworkUrl() {
   chrome.storage.sync.get(['webwork_data'], (data) => {
-    let url = getBaseUrl(window.location.href);
-    console.log("DATA");
-    console.log(data);
+    let url = getWebworkHomeUrl(window.location.href);
     if (!Object.keys(data).length) {
       data = getDefaultData();
     }
@@ -33,12 +31,16 @@ function getDefaultData() {
   };
 }
 
-function getBaseUrl(url) {
+function getWebworkHomeUrl(url) {
   let ignoreStarts = ['https://', 'http://', 'www.'];
+  url = url.toLowerCase();
   for (let i = 0; i < ignoreStarts.length; i++) {
     let ignoreStart = ignoreStarts[i];
     if (url.includes(ignoreStart)) {
       url = url.substr(url.indexOf(ignoreStart) + ignoreStart.length);
+    }
+    if (url.includes('webwork2')) {
+      url = url.replace('webwork2', 'webwork');
     }
   }
 

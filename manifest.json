@@ -1,12 +1,12 @@
 {
-    "name": "Webwork Upgrade",
-    "version": "1.0.0",
+    "name": "Webwork++",
+    "version": "1.0.2",
     "icons": { 
         "16": "icon16.png",
         "48": "icon48.png",
        "128": "icon128.png"
     },
-    "description": "Webwork for humans",
+    "description": "Use WeBWorK Bonus Features",
     "manifest_version": 2,
     "content_scripts": [
         {
@@ -25,6 +25,6 @@
     ],
     "browser_action": {
         "default_popup": "popup.html",
-        "default_title": "Webwork for humans"
+        "default_title": "Helpful features for using WeBWorK"
     }
 }

@@ -96,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var infoBox = document.getElementById('info-box');
   var dataList = document.getElementById('data-list');
   var infoList = document.getElementById('info-list');
+  var githubLink = document.getElementById('github-link');
+
+  githubLink.onclick = () => {
+    openLink('https://github.com/jamesweber7/Webwork_Extension');
+  }
+
   function toggleInfoBox () {
     if (infoIsOpen) {
       infoBox.style.display = 'none';
@@ -120,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadDataList() {
     dataList.innerText = 'loading data...';
     chrome.storage.sync.get(['webwork_data'], (data) => {
-      dataList.innerText = 'Data';
+      dataList.innerText = 'My Data';
       let classDataBox = getClassList(data.webwork_data.classes);
       let webworkLinkDataBox = getWebworkLinkItem(data.webwork_data);
       let resetDataButton = getResetDataButton();
