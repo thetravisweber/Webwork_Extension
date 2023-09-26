@@ -1,3 +1,4 @@
+
 let specialWordsPresent = 0;
 
 function doNothing(answer) {
@@ -8,12 +9,9 @@ function doNothing(answer) {
     case 'help' :
       commandMenu();
       break;
-    case containsNewlyTypedSpecialWord(answer) :
-      alert("Watch your profanity");
-      break;
   }
-  if (answer == 'hello') {
-  } else if (containsNewlyTypedSpecialWord(answer)) {
+  if (containsNewlyTypedSpecialWord(answer)) {
+    alert("Watch your profanity");
   }
 }
 

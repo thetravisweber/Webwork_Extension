@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("study-problem-button").addEventListener('click', onclick, false);
   const openRandomProblemMessage = 'open_random_problem';
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let linkInputBox = document.createElement('inputbox');
     let linkInput = document.createElement('input');
     linkInput.type = 'textbox';
-    linkInput.placeholder = 'webwork.---.edu';
+    linkInput.placeholder = 'webwork.xxx.edu';
     linkInputBox.append(linkInput);
     let linkSubmit = document.createElement('button');
     linkSubmit.innerText = 'Submit';
@@ -54,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
   function processPopup(link) {
     if (link) {
-      removePopup();
       webworkUrl = processUrl(link);
       chrome.storage.sync.get(['webwork_data'], (data) => {
         data.webwork_data.webwork_home_link_set = true;
@@ -63,18 +63,18 @@ document.addEventListener('DOMContentLoaded', function () {
           location.reload();
         });
       });
+      removePopup();
     }
   }
 
   function processUrl(link) {
     if (link.includes('http://')) {
-      return;
+      return link;
     }
     if (link.includes('https://')) {
-      return;
+      return link;
     }
-    link = 'https://' + link;
-    return link;
+    return 'https://' + link;
   }
 
   function hideWebworkBtn() {

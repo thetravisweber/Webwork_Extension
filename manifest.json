@@ -12,12 +12,7 @@
         {
             "matches": ["https://*/*"],
             "include_globs":  ["https://webwork.*/*", "https://webwork2.*/*"],
-            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js", "classtrack.js"]
-        },
-        {
-            "matches": ["https://*/*"],
-            "include_globs":  ["https://webwork.*/*", "https://webwork2.*/*"],
-            "js": ["studyproblem.js", "popup.js"]
+            "js": ["content.js", "shortcuts.js", "zzzboringtaxstuff.js", "classtrack.js", "studyproblem.js", "popup.js"]
         }
     ],
     "permissions": [

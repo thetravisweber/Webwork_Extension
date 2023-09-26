@@ -1,5 +1,6 @@
+
+// respond to request from popup to open random problem
 chrome.runtime.onMessage.addListener(async function (request) {
-  // there is probably a cleaner way to do this, but I am not being paid for this
   const openRandomProblemMessage = 'open_random_problem';
 
   if (request===openRandomProblemMessage) {
@@ -25,7 +26,7 @@ async function randomProblemForWebworkAsu() {
   let currentProblem = [...problemList.getElementsByClassName('currentProblem')][0];
   problems.splice(problems.indexOf(currentProblem), 1);
   let randomProblem = problems[Math.floor(problems.length*Math.random())];
-  randomProblemLink = [...randomProblem.getElementsByTagName('a')][0];
+  let randomProblemLink = [...randomProblem.getElementsByTagName('a')][0];
   randomProblemLink.click();
   return !!randomProblemLink;
 }
