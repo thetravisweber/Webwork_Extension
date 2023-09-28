@@ -54,7 +54,10 @@ function updateClass() {
 
 function onClassPage() {
     let url = window.location.href;
-    return className && url.includes(className);
+    if (!className)
+        return;
+    return  url.includes(`webwork/${className}`)    || url.includes(`webwork/${className.replaceAll(' ', '_')}`) ||
+            url.includes(`webwork2/${className}`)   || url.includes(`webwork2/${className.replaceAll(' ', '_')}`);
 }
 
 function getClassName() {

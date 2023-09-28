@@ -182,7 +182,8 @@ function addSerotoninButton() {
 }
 
 function addNavbarButton(button, posFromRight=0) {
-  let problemNav = document.getElementsByClassName("problem-nav")[0].children[0];
+  let problemNav = searchInnerText(aTags, "Problem List").parentElement;
+
   problemNav.insertBefore(button, problemNav.children[problemNav.children.length-posFromRight]);
 }
 
@@ -200,7 +201,7 @@ function makeNavbarButton(text, onclick=null) {
 }
 
 function giveNavbarButtonsTooltips() {
-  let problemNav = document.getElementsByClassName("problem-nav")[0].children[0];
+  let problemNav = searchInnerText(aTags, "Problem List").parentElement;
   [...problemNav.children].forEach(btn => {
     switch (btn.innerText) {
       case 'Previous Problem' :
@@ -280,6 +281,13 @@ function practiceMode() {
       }
     });
 
+    // radio button questions
+    [...problemBody.getElementsByTagName('input')].forEach(checkbox => {
+      if (checkbox.type.toLowerCase() == 'radio') {
+        checkbox.removeAttribute('checked');
+      }
+    });
+
     // select questions
     [...problemBody.getElementsByTagName('option')].forEach(option => {
       option.removeAttribute('selected');
@@ -303,7 +311,7 @@ function createPracticeModeHeader() {
   exitBtn.innerText = 'exit practice mode';
   header.append(exitBtn);
 
-  let navbarParent = document.getElementsByClassName("problem-nav")[0];
+  let navbarParent = searchInnerText(aTags, "Problem List").parentElement.parentElement;
   navbarParent.after(header);
 
   function exitPracticeMode() {
@@ -367,7 +375,8 @@ function serotonin() {
   spDisplay.style = 'position: absolute; width: 100px; height: 100px; line-height: 100px; text-align: center; border-radius: 50%; display:  align-content: center; background-color: white; color: #ff008b; border: 2px solid #ff008b; z-index: 10000;';
   spDisplay.setAttribute("points", 0);
   spDisplay.innerText = "0 points";
-  document.getElementsByClassName("problem-nav")[0].after(spDisplay);
+  let navbarParent = searchInnerText(aTags, "Problem List").parentElement.parentElement;
+  navbarParent.after(spDisplay);
 
   function increaseSeratoninPoints(e) {
     const div = document.createElement('div');
